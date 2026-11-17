@@ -1,0 +1,188 @@
+/* SPDX-License-Identifier: AGPL-3.0-only */
+/* Forge Large Collection Helper — scoped to the built-in LoRA panes/controls. */
+.lch-managed .lch-scroll-sentinel {
+    display: block;
+    width: 100%;
+    height: 2px;
+    clear: both;
+    pointer-events: none;
+}
+.lch-managed .lch-placeholder { display: none; }
+.lch-managed .lch-selected-folder {
+    box-shadow: inset 0 0 0 2px var(--primary-500, #5599ee);
+}
+/* A subdued, fixed-size count below the card viewport. The footer is outside
+ * the independently scrolling cards so large folders cannot push it into the
+ * search/sort toolbar. */
+.lch-count-footer {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0.3rem 0.6rem 0.45rem;
+    text-align: center;
+    color: var(--body-text-color-subdued, #92949b);
+    font-size: 0.72rem;
+    font-weight: 400;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    pointer-events: none;
+    opacity: 0.8;
+}
+.lch-count-footer[hidden] { display: none !important; }
+.lch-browser-message {
+    display: block;
+    width: min(100%, 24rem);
+    max-width: 100%;
+    margin: 0.6rem auto;
+    padding: 0.4rem;
+    text-align: center;
+    border: 0;
+    background: transparent;
+    color: var(--body-text-color);
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: default;
+}
+.lch-browser-message[hidden] { display: none !important; }
+.lch-browser-message[data-lch-error="true"] { cursor: pointer; text-decoration: underline; }
+.lch-folder-label {
+    display: block;
+    flex: 0 0 auto;
+    align-self: start;
+    min-width: 0;
+    max-width: min(100%, 32rem);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0.25rem 0;
+    padding: 0.25rem 0.5rem;
+    color: var(--body-text-color);
+    background: transparent;
+    border: 1px solid var(--button-secondary-border-color);
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+.lch-folder-label[hidden] { display: none !important; }
+
+/* Random appears with the other sorting buttons, not after a spacer. */
+.extra-network-control.lch-managed-controls .lch-random-sort {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    flex: 0 0 auto;
+    width: 2rem;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0.25rem;
+    margin: 0;
+    background: transparent;
+    border: none;
+    font-size: 1.05rem;
+    line-height: 1.25rem;
+    cursor: pointer;
+}
+.extra-network-control.lch-managed-controls .lch-random-sort.extra-network-control--enabled {
+    outline: 1px solid var(--primary-500, #5599ee);
+    border-radius: 0.25rem;
+}
+
+/* Gradio places the LoRA controls at the right end of the tab strip. On narrow
+ * layouts they must get their own row; merely wrapping their children leaves
+ * the parent toolbar wider than the viewport. */
+@media (max-width: 1600px) {
+    .extra-networks > .tab-nav.lch-tab-nav {
+        box-sizing: border-box;
+        flex-wrap: wrap !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+    }
+    .extra-networks > .tab-nav.lch-tab-nav .extra-networks-controls-div {
+        display: flex;
+        box-sizing: border-box;
+        flex: 1 1 100%;
+        order: 99;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        margin: 0;
+    }
+    .extra-networks .tab-nav.lch-tab-nav .extra-network-control.lch-managed-controls {
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: wrap !important;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.1rem;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    .extra-networks .tab-nav.lch-tab-nav .lch-managed-controls .extra-network-control--search {
+        flex: 1 1 11rem;
+        min-width: 7rem;
+        max-width: 100%;
+    }
+    .extra-networks .tab-nav.lch-tab-nav .lch-managed-controls .extra-network-control--search-text {
+        box-sizing: border-box;
+        min-width: 0;
+        max-width: 100%;
+    }
+    .extra-networks .tab-nav.lch-tab-nav .lch-managed-controls > small {
+        margin: 0 0.2rem;
+        flex: 0 0 auto;
+    }
+    .extra-networks .tab-nav.lch-tab-nav .lch-managed-controls > :is(
+        .extra-network-control--sort,
+        .extra-network-control--sort-dir,
+        .extra-network-control--tree-view,
+        .extra-network-control--refresh
+    ) {
+        flex: 0 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    :is(.lch-managed, .lch-mobile-layout).extra-network-pane {
+        min-height: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+    :is(.lch-managed, .lch-mobile-layout) .extra-network-pane-content-dirs,
+    :is(.lch-managed, .lch-mobile-layout) .extra-network-pane-content-tree {
+        display: flex !important;
+        flex-direction: column !important;
+        flex: 0 0 auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+    }
+    :is(.lch-managed, .lch-mobile-layout) .extra-network-dirs,
+    :is(.lch-managed, .lch-mobile-layout) .extra-network-tree {
+        flex: 0 0 auto !important;
+        max-height: var(--lch-dirs-max-height, 400px) !important;
+        overflow-y: auto !important;
+        overscroll-behavior: contain;
+    }
+    :is(.lch-managed, .lch-mobile-layout).extra-network-dirs-hidden .extra-network-dirs,
+    :is(.lch-managed, .lch-mobile-layout).extra-network-dirs-hidden .extra-network-tree {
+        display: none !important;
+    }
+    :is(.lch-managed, .lch-mobile-layout) .extra-network-cards {
+        height: var(--lch-cards-height, 60dvh) !important;
+        min-height: var(--lch-cards-height, 60dvh) !important;
+        flex: 0 0 var(--lch-cards-height, 60dvh) !important;
+        min-width: 0;
+        overflow-y: auto !important;
+        overscroll-behavior: contain;
+    }
+    :is(.lch-managed, .lch-mobile-layout) .extra-network-pane-content-tree .resize-handle {
+        display: none !important;
+    }
+}
