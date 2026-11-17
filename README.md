@@ -4,13 +4,21 @@ An extension for [Forge Neo](https://github.com/Haoming02/sd-webui-forge-classic
 
 ## Installation
 
-Copy or extract the `forge-large-collection-helper` folder into:
+### Recommended: Install from URL
+
+1. In Forge Neo, open **Extensions → Install from URL**.
+2. On this GitHub repository page, use **Code → HTTPS** to copy the repository URL. Paste it into **URL for extension's git repository** in Forge Neo, then click **Install**.
+3. Once the installation completes, **fully stop and relaunch Forge Neo** to load the extension's Python hooks. Refresh the browser afterward.
+
+### Alternative: Manual installation
+
+Download the release ZIP from GitHub or CivitAI and extract the `forge-large-collection-helper` folder into:
 
 ```text
 <Forge Neo>/extensions/forge-large-collection-helper/
 ```
 
-Restart Forge Neo, then reload the browser page. To update an existing installation, replace the extension files and restart Forge Neo. To uninstall, remove the extension folder; alternatively, disable it through Forge Neo's Extensions tab and restart.
+Fully restart Forge Neo, then refresh the browser. To update a manual installation, replace the extension files and restart. To disable the extension, use Forge Neo's **Extensions → Installed** tab and restart; remove the extension directory to uninstall.
 
 ## Features
 
